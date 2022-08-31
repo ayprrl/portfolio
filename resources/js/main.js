@@ -67,4 +67,28 @@ function animate(){
     renderer.render(scene, camera);
 }*/
 
+/*animation for slide in contact bar*/
+function contactBar(){
+    const contactMenu = document.querySelector('.open-contact');
+    const navOpen = document.querySelector('.nav-open');
+    const contact = document.querySelector('.contact');
+    const social = document.querySelector('.social');
+    const logo = document.querySelector('.logo');
+    
+    const tl = new TimelineMax({paused: true, reversed: true});
+    
+    tl.to(navOpen, 0.5, { y:0 })
+        .fromTo(contact, 0.5, { opacity:0,y:10 }, { opacity:1, y:0 }, "-=0.1")
+        .fromTo(social, 0.5, { opacity:0,y:10 }, { opacity:1, y:0 }, "-=0.5")
+        .fromTo(logo, 0.2, { color: 'white' }, { color: "black" }, "-=1")
+        .fromTo(contactMenu, 0.2, { color: 'white' }, { color: "black" }, "-=1");
+
+    contactMenu.addEventListener('click', () => {
+        tl.reversed() ? tl.play() : tl.reverse();
+    });
+}
+
 init();
+contactBar();
+
+
